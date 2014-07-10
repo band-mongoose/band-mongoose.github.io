@@ -104,7 +104,7 @@ body {
 /********************************************************/
 /*             Sections - universal classes             */
 /********************************************************/
-.section { 
+.section {
 	z-index: 1;
 	min-height:420px;
 	width: 100%; 
@@ -112,18 +112,12 @@ body {
 	height:100%;
 	padding-top:100px;
 	padding-bottom:50px; 
-	display:none;
+	display:block;
 	top:0;
 } 
 @media (min-width: 768px) {
 	.section { padding-top:160px;}
 }
-
-/* Show one of sections */
-#head { 
-	display: block;
-}
-
 
 /********************************************************/
 /*                      Typography                      */
@@ -360,9 +354,21 @@ a:hover, a:active { color:#fff; text-decoration: underline; }
 .theme-invert .thumbnail {
 	background-color: rgba(255,255,255,.8);
 }
+
+.thumbnails {
+	margin-left: -20px;
+	list-style: none;
+}
+
 .thumbnail .caption {
 	color: inherit;
 }
 
+#livereWriteForm {
+	border: none !important;
+	background: none !important;
+}
 
-
+#liverePlugIn .livereFont6 {
+	color: #000000 !important;
+}
