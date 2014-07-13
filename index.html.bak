@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="Minkyu Cho(mrnoname@naver.com)">
+
+	<title>Mongoose The Brave And Great Band</title>
+	<link rel="apple-touch-icon" href="assets/images/500.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="assets/images/500.png" />
+	<link rel="apple-touch-icon" sizes="114x114" href="assets/images/500.png" />
+	<link rel="apple-touch-icon-precomposed" href="assets/images/500.png"/>
+	<link rel="shortcut icon" href="assets/images/500.png">
+
+	<!-- Bootstrap itself -->
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<!-- Custom styles -->
+	<link rel="stylesheet" href="assets/css/js-flickr-gallery.css"/>
+	<link rel="stylesheet" href="assets/css/mongoose.css">
+
+	<!-- Fonts -->
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href='//fonts.googleapis.com/css?family=Wire+One' rel='stylesheet' type='text/css'>
+</head>
+
+<!-- use "theme-invert" class on bright backgrounds, also try "text-shadows" class -->
+<body class="theme-invert" ng-app="mongoose">
+
+<nav class="mainmenu">
+	<div class="container">
+		<div class="dropdown">
+			<button type="button" class="navbar-toggle" data-toggle="dropdown"><span class="icon-bar"></span>
+				<span class="icon-bar"></span> <span class="icon-bar"></span></button>
+			<!-- <a data-toggle="dropdown" href="#">Dropdown trigger</a> -->
+			<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+				<li><a href="/" class="active">Home</a></li>
+				<li><a href="#biography">Biography</a></li>
+				<li><a href="#discography">Discography</a></li>
+				<li><a href="#talk">Video</a></li>
+				<li><a href="##photo">Photo</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+<section class="section" ng-view>
+</section>
+<!--<div class="row">-->
+	<!--<div class="col-sm-8 col-sm-offset-2">-->
+		<!--<div id="livereContainer">-->
+			<!--<script type="text/javascript" id="livereInit">-->
+				<!--var consumer_seq = "200";-->
+				<!--var livere_seq = "20666";-->
+				<!--var smartlogin_seq = "228";-->
+
+				<!--var title = "Mongoose";-->
+				<!--var refer = "www.mongoose.co.kr/talk";-->
+
+				<!--livereReply = new Livere(livere_seq, refer, title);-->
+				<!--livereLib.start();-->
+			<!--</script>-->
+		<!--</div>-->
+	<!--</div>-->
+<!--</div>-->
+<!-- Load js libs only when the page is loaded. -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.18/angular.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.18/angular-route.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="assets/js/modernizr.custom.72241.js"></script>
+<script src="assets/js/js-flickr-gallery.min.js"></script>
+<!-- Custom template scripts -->
+<script src="assets/js/app.js"></script>
+</body>
+</html>
