@@ -20,8 +20,8 @@ mongoose
 						templateUrl : 'assets/templates/video.html',
 						controller : 'HomeController'
 
-					}).when('/fans', {
-						templateUrl : 'assets/templates/fans.html',
+					}).when('/talk', {
+						templateUrl : 'assets/templates/talk.html',
 						controller : 'HomeController'
 					}).otherwise({
 						redirectTo : '/home'

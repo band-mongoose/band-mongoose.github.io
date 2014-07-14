@@ -184,7 +184,6 @@ a:focus {
     width: 100%;
     padding: 25px 0;
     color: #fff;
-    background: url(../images/downloads-bg.jpg) no-repeat center center scroll;
     background-color: #000;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -385,5 +384,27 @@ body {
 }
 
 .music-header {
-    padding-top: 150px;
+    padding-top: 100px;
+}
+
+.music-description {
+    height:200px;
+    overflow:scroll;
+    text-align:left;
+}
+
+@media(min-width:767px) {
+	.music-description {
+        height:450px;
+    }
+}
+
+.black-white {
+    color: #fff;
+    background-color: #000;
+}
+
+.white-black {
+    color: #000;
+    background-color: #fff;
 }
