@@ -16,7 +16,7 @@ mongoose
 						templateUrl : 'assets/templates/photo.html',
 						controller : 'PhotoController'
 					}).when('/videos', {
-						templateUrl : 'assets/templates/discography.html'
+						templateUrl : 'assets/templates/video.html'
 					}).when('/fans', {
 						templateUrl : 'assets/templates/fans.html',
 						controller : 'FansController'
