@@ -1,9 +1,8 @@
 <style>
-	.item {
-		width: 300px;
-		height: 300px;
-		margin: 10px;
-		float: left;
+	@media (max-width: 768px) {
+		.item {
+			margin-left: -5px;
+		}
 	}
 </style>
 <div class="music-header text-center">
@@ -12,12 +11,12 @@
 <section class="music-section">
 	<div class="container">
 		<div id="container" class="row" style="margin: 0 auto;">
-			<div class="item"><a href="/#!/music/1st"><img width="300" height="300" src="/assets/images/cover/1.jpg"></a></div>
-			<div class="item"><a href="/#!/music/2nd"><img width="300" height="300" src="/assets/images/cover/2.jpg"></a></div>
-			<div class="item"><a href="/#!/music/3rd"><img width="300" height="300" src="/assets/images/cover/3.jpg"></a></div>
-			<div class="item"><a href="/#!/music/4th"><img width="300" height="300" src="/assets/images/cover/4.jpg"></a></div>
-			<div class="item"><a href="/#!/music/ep"><img width="300" height="300" src="/assets/images/cover/ep.jpg"></a></div>
-			<div class="item"><a href="/#!/music/ep_remix"><img width="300" height="300" src="/assets/images/cover/remix.jpg"></a></div>
+			<div class="item"><a href="/#!/music/1st"><img width="300" src="/assets/images/cover/1.jpg"></a></div>
+			<div class="item"><a href="/#!/music/2nd"><img width="300" src="/assets/images/cover/2.jpg"></a></div>
+			<div class="item"><a href="/#!/music/3rd"><img width="300" src="/assets/images/cover/3.jpg"></a></div>
+			<div class="item"><a href="/#!/music/4th"><img width="300" src="/assets/images/cover/4.jpg"></a></div>
+			<div class="item"><a href="/#!/music/ep"><img width="300" src="/assets/images/cover/ep.jpg"></a></div>
+			<div class="item"><a href="/#!/music/ep_remix"><img width="300" src="/assets/images/cover/remix.jpg"></a></div>
 		</div>
 	</div>
 </section>
@@ -27,7 +26,6 @@
 		$container.imagesLoaded( function(){
 			$container.masonry({
 				itemSelector : '.item',
-				columnWidth : 320,
 			  isFitWidth: true,
 				isAnimated: !Modernizr.csstransitions
 			});

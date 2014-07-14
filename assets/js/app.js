@@ -59,6 +59,17 @@ mongoose
 
 		ga('create', 'UA-52791836-1', 'auto');
 		ga('send', 'pageview');
+
+		if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) == false) {
+			$(document).ready(function(){
+				$.stratus({
+					links: 'http://soundcloud.com/band-mongoose',
+					auto_play: true,
+					download: false,
+					random: true
+				});
+			});
+		}
 	});
 
 mongoose.controller('HomeController', function ($scope, $location, $routeParams, $timeout) {
