@@ -1,5 +1,8 @@
 var mongoose = angular.module('mongoose', ['ngRoute','duScroll']);
 mongoose
+.factory('musicInfo', function($http) {
+	return $http.get('/assets/json/music.json');
+})
 .config(
 		['$routeProvider', '$locationProvider',
 				function($routeProvider, $locationProvider) {
@@ -13,13 +16,15 @@ mongoose
 					}).when('/music', {
 						templateUrl : 'assets/templates/music.html',
 						controller : 'HomeController'
+					}).when('/music/:id', {
+						templateUrl : 'assets/templates/music/music.html',
+						controller : 'MusicController'
 					}).when('/photos', {
 						templateUrl : 'assets/templates/photo.html',
 						controller : 'HomeController'
 					}).when('/videos', {
 						templateUrl : 'assets/templates/video.html',
 						controller : 'HomeController'
-
 					}).when('/talk', {
 						templateUrl : 'assets/templates/talk.html',
 						controller : 'HomeController'
@@ -57,7 +62,13 @@ mongoose.controller('HomeController',function($scope, $location, $routeParams) {
 mongoose.controller('PhotoController', function($scope) {
 });
 
-mongoose.controller('FansController', function($scope) {
+mongoose.controller('MusicController', function($scope, $routeParams, $sce, musicInfo) {
+	musicInfo.success(function(data) {
+		var info = data[$routeParams.id];
+		$scope.title = info.title;
+		$scope.description = $sce.trustAsHtml('/assets/templates/music/description/'+ $routeParams.id + '.html');
+		$scope.soundcloud = $sce.trustAsResourceUrl(info.soundcloud);
+	});
 });
 
 //Google Map Skin - Get more at http://snazzymaps.com/
