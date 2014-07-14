@@ -352,16 +352,8 @@ img::-moz-selection {
 	}
 }
 
-@media (min-width: 1024px) {
-	.news-section {
-		width: 100%;
-		padding: 100px 0;
-		color: #000;
-		background-color: #fff;
-		background: url(../images/bg/white.jpg) no-repeat top center scroll;
-		-webkit-background-size: cover;
-		-moz-background-size: cover;
-		background-size: cover;
-		-o-background-size: cover;
-	}
+#news iframe.twitter-timeline-rendered {
+	filter: alpha(opacity=80);
+	opacity: 0.8;
+!IMPORTANT;
 }
