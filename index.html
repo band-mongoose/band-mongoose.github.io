@@ -50,10 +50,10 @@
 					<a href="/#!/home"></a>
 				</li>
 				<li>
-					<a href="/#!/home/band">band</a>
+					<a href="/#!/home/#band">band</a>
 				</li>
 				<li>
-					<a href="/#!/home/news">news</a>
+					<a href="/#!/home/#news">news</a>
 				</li>
 				<li>
 					<a href="/#!/music">music</a>
@@ -68,7 +68,7 @@
 					<a href="/#!/fans">fans</a>
 				</li>
 				<li>
-					<a href="/#!/home/contact">contact</a>
+					<a href="/#!/home/#contact">contact</a>
 				</li>
 			</ul>
 		</div>
@@ -76,7 +76,7 @@
 	</div>
 	<!-- /.container -->
 </nav>
-<span ng-view>
+<span ng-view autoscroll="true">
 </span>
 <!--<div id="map"></div>-->
 <!-- Google Maps API Key - You will need to use your own API key to use the map feature -->
@@ -84,12 +84,12 @@
 
 <!-- Load js libs only when the page is loaded. -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.18/angular.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.18/angular-route.min.js"></script>
 <!-- Custom template scripts -->
+<script src="assets/js/angular-scroll.min.js"></script>
 <script src="assets/js/app.js"></script>
 </body>
 

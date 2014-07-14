@@ -1,4 +1,4 @@
-var mongoose = angular.module('mongoose', [ 'ngRoute' ]);
+var mongoose = angular.module('mongoose', ['ngRoute','duScroll']);
 mongoose
 .config(
 		['$routeProvider', '$locationProvider',
@@ -11,43 +11,55 @@ mongoose
 						templateUrl : 'assets/templates/home.html',
 						controller : 'HomeController'
 					}).when('/music', {
-						templateUrl : 'assets/templates/music.html'
+						templateUrl : 'assets/templates/music.html',
+						controller : 'HomeController'
 					}).when('/photos', {
 						templateUrl : 'assets/templates/photo.html',
-						controller : 'PhotoController'
+						controller : 'HomeController'
 					}).when('/videos', {
-						templateUrl : 'assets/templates/video.html'
+						templateUrl : 'assets/templates/video.html',
+						controller : 'HomeController'
+
 					}).when('/fans', {
 						templateUrl : 'assets/templates/fans.html',
-						controller : 'FansController'
+						controller : 'HomeController'
 					}).otherwise({
 						redirectTo : '/home'
 					});
 				} ]).run(function($location) {
-	//jQuery to collapse the navbar on scroll
-	$(window).scroll(function() {
-		if($(".navbar").offset().top > 50){
-			$(".navbar-fixed-top").addClass("top-nav-collapse");
-		}else{
-			$(".navbar-fixed-top").removeClass("top-nav-collapse");
-		}
-	});
+					//jQuery to collapse the navbar on scroll
+					$(window).scroll(function() {
+						if($(".navbar").offset().top > 50){
+							$(".navbar-fixed-top").addClass("top-nav-collapse");
+						}else{
+							$(".navbar-fixed-top").removeClass("top-nav-collapse");
+						}
+					});
+
+					(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+					(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+					m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+					})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+					ga('create', 'UA-52791836-1', 'auto');
+					ga('send', 'pageview');
 });
 
-mongoose.controller('HomeController',
-		function($scope, $location, $routeParams) {
-			var id = '#' + (angular.isUndefined($routeParams.id) ? 'page-top'
-					: $routeParams.id);
-			$('html, body').stop().animate({
-				scrollTop : $(id).offset().top
-			}, 1500, 'easeInOutExpo');
-		});
+mongoose.controller('HomeController',function($scope, $location, $routeParams) {
+	var $collapse = $('.collapse');
+	if($collapse.hasClass('in')) {
+		$collapse.collapse('hide')
+	};
+//	var id = '#' + (angular.isUndefined($routeParams.id) ? 'page-top' : $routeParams.id);
+//	$('html, body').stop().animate({ scrollTop : $(id).offset().top }, 1500, 'easeInOutExpo');
+});
 
 mongoose.controller('PhotoController', function($scope) {
 });
 
 mongoose.controller('FansController', function($scope) {
 });
+
 //Google Map Skin - Get more at http://snazzymaps.com/
 //var myOptions = {
 //	zoom : 15,
