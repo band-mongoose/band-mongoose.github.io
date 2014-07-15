@@ -76,9 +76,7 @@ mongoose
 
 mongoose.controller('HomeController', function ($scope, $location, $routeParams, $timeout) {
 	$timeout(function() {
-		$.ajax({ url: 'http://platform.twitter.com/widgets.js', dataType: 'script', cache:true}).done(function(){
-			console.log('test');
-		});
+		$.ajax({ url: 'http://platform.twitter.com/widgets.js', dataType: 'script', cache:true});
 	}, 500);
 });
 
