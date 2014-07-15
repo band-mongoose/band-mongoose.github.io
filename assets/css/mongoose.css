@@ -152,6 +152,7 @@ a:focus {
 	padding: 100px 0;
 	color: #fff;
 	background-color: #000;
+	background: url(../images/bg/universe.jpg) no-repeat center center scroll;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	background-size: cover;
@@ -175,6 +176,7 @@ a:focus {
 	padding: 25px 0;
 	color: #fff;
 	background-color: #000;
+	background: url(../images/bg/universe.jpg) no-repeat center center scroll;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	background-size: cover;
