@@ -25,6 +25,8 @@ mongoose
 			}).when('/talk', {
 				templateUrl: 'assets/templates/talk.html',
 				controller: 'HomeController'
+			}).when('/contact', {
+				templateUrl: 'assets/templates/contact.html'
 			}).otherwise({
 				redirectTo: '/home'
 			});
@@ -74,9 +76,10 @@ mongoose
 
 mongoose.controller('HomeController', function ($scope, $location, $routeParams, $timeout) {
 	$timeout(function() {
-		$.ajax({ url: 'http://platform.twitter.com/widgets.js', dataType: 'script', cache:true});
-	}, 1000);
-//	!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+		$.ajax({ url: 'http://platform.twitter.com/widgets.js', dataType: 'script', cache:true}).done(function(){
+			console.log('test');
+		});
+	}, 500);
 });
 
 mongoose.controller('PhotoController', function ($scope) {
@@ -90,148 +93,3 @@ mongoose.controller('MusicController', function ($scope, $routeParams, $sce, mus
 		$scope.soundcloud = $sce.trustAsResourceUrl(info.soundcloud);
 	});
 });
-
-//Google Map Skin - Get more at http://snazzymaps.com/
-//var myOptions = {
-//	zoom : 15,
-//	center : new google.maps.LatLng(53.385873, -1.471471),
-//	mapTypeId : google.maps.MapTypeId.ROADMAP,
-//	disableDefaultUI : true,
-//	styles : [ {
-//		"featureType" : "water",
-//		"elementType" : "geometry",
-//		"stylers" : [ {
-//			"color" : "#000000"
-//		}, {
-//			"lightness" : 17
-//		} ]
-//	}, {
-//		"featureType" : "landscape",
-//		"elementType" : "geometry",
-//		"stylers" : [ {
-//			"color" : "#000000"
-//		}, {
-//			"lightness" : 20
-//		} ]
-//	}, {
-//		"featureType" : "road.highway",
-//		"elementType" : "geometry.fill",
-//		"stylers" : [ {
-//			"color" : "#000000"
-//		}, {
-//			"lightness" : 17
-//		} ]
-//	}, {
-//		"featureType" : "road.highway",
-//		"elementType" : "geometry.stroke",
-//		"stylers" : [ {
-//			"color" : "#000000"
-//		}, {
-//			"lightness" : 29
-//		}, {
-//			"weight" : 0.2
-//		} ]
-//	}, {
-//		"featureType" : "road.arterial",
-//		"elementType" : "geometry",
-//		"stylers" : [ {
-//			"color" : "#000000"
-//		}, {
-//			"lightness" : 18
-//		} ]
-//	}, {
-//		"featureType" : "road.local",
-//		"elementType" : "geometry",
-//		"stylers" : [ {
-//			"color" : "#000000"
-//		}, {
-//			"lightness" : 16
-//		} ]
-//	}, {
-//		"featureType" : "poi",
-//		"elementType" : "geometry",
-//		"stylers" : [ {
-//			"color" : "#000000"
-//		}, {
-//			"lightness" : 21
-//		} ]
-//	}, {
-//		"elementType" : "labels.text.stroke",
-//		"stylers" : [ {
-//			"visibility" : "on"
-//		}, {
-//			"color" : "#000000"
-//		}, {
-//			"lightness" : 16
-//		} ]
-//	}, {
-//		"elementType" : "labels.text.fill",
-//		"stylers" : [ {
-//			"saturation" : 36
-//		}, {
-//			"color" : "#000000"
-//		}, {
-//			"lightness" : 40
-//		} ]
-//	}, {
-//		"elementType" : "labels.icon",
-//		"stylers" : [ {
-//			"visibility" : "off"
-//		} ]
-//	}, {
-//		"featureType" : "transit",
-//		"elementType" : "geometry",
-//		"stylers" : [ {
-//			"color" : "#000000"
-//		}, {
-//			"lightness" : 19
-//		} ]
-//	}, {
-//		"featureType" : "administrative",
-//		"elementType" : "geometry.fill",
-//		"stylers" : [ {
-//			"color" : "#000000"
-//		}, {
-//			"lightness" : 20
-//		} ]
-//	}, {
-//		"featureType" : "administrative",
-//		"elementType" : "geometry.stroke",
-//		"stylers" : [ {
-//			"color" : "#000000"
-//		}, {
-//			"lightness" : 17
-//		}, {
-//			"weight" : 1.2
-//		} ]
-//	} ]
-//};
-
-//var map = new google.maps.Map(document.getElementById('map'), myOptions);
-
-//// global. currently active menu item
-//var current_item = 0;
-//
-//// few settings
-//var section_hide_time = 1300;
-//var section_show_time = 1300;
-//
-//// jQuery stuff
-//jQuery(document).ready(function($) {
-//
-//	// Switch section
-//	$("a", '.mainmenu').click(function()
-//	{
-//		if( ! $(this).hasClass('active') ) {
-//			current_item = this;
-//			// close all visible divs with the class of .section
-//			$('.section:visible').fadeOut( section_hide_time, function() {
-//				$('a', '.mainmenu').removeClass( 'active' );
-//				$(current_item).addClass( 'active' );
-//				var new_section = $( $(current_item).attr('href') );
-//				new_section.fadeIn( section_show_time );
-//			} );
-//		}
-//		return false;
-//	});
-//});
