@@ -14,19 +14,22 @@ mongoose
 				templateUrl: 'assets/templates/home.html',
 				controller: 'HomeController'
 			}).when('/music', {
-				templateUrl: 'assets/templates/music.html'
-			}).when('/music/:id', {
-				templateUrl: 'assets/templates/music/music.html',
+				templateUrl: 'assets/templates/music.html',
 				controller: 'MusicController'
+			}).when('/music/:id', {
+				templateUrl: 'assets/templates/music/detail.html',
+				controller: 'MusicDetailController'
 			}).when('/photos', {
 				templateUrl: 'assets/templates/photo.html'
 			}).when('/videos', {
 				templateUrl: 'assets/templates/video.html'
 			}).when('/talk', {
 				templateUrl: 'assets/templates/talk.html',
-				controller: 'HomeController'
+				controller: 'TalkController'
 			}).when('/contact', {
 				templateUrl: 'assets/templates/contact.html'
+			}).when('/former', {
+				templateUrl: 'assets/templates/former.html'
 			}).otherwise({
 				redirectTo: '/home'
 			});
@@ -62,8 +65,8 @@ mongoose
 		ga('create', 'UA-52791836-1', 'auto');
 		ga('send', 'pageview');
 
-		if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) == false) {
-			$(document).ready(function(){
+		if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) == false) {
+			$(document).ready(function () {
 				$.stratus({
 					links: 'http://soundcloud.com/band-mongoose',
 					auto_play: true,
@@ -72,18 +75,42 @@ mongoose
 				});
 			});
 		}
+
+		$.lazyLoadXT.autoInit = false;
+
 	});
 
 mongoose.controller('HomeController', function ($scope, $location, $routeParams, $timeout) {
-	$timeout(function() {
-		$.ajax({ url: 'http://platform.twitter.com/widgets.js', dataType: 'script', cache:true});
+	$('#news-widget').on('lazyshow', function (event) {
+		$timeout(function () {
+			$.ajax({ url: 'http://platform.twitter.com/widgets.js', dataType: 'script', cache: true});
+		}, 500);
+	}).lazyLoadXT();
+});
+
+mongoose.controller('TalkController', function ($scope, $location, $routeParams, $timeout) {
+	$timeout(function () {
+		$.ajax({ url: 'http://platform.twitter.com/widgets.js', dataType: 'script', cache: true});
 	}, 500);
 });
 
 mongoose.controller('PhotoController', function ($scope) {
 });
 
-mongoose.controller('MusicController', function ($scope, $routeParams, $sce, musicInfo) {
+mongoose.controller('MusicController', function ($scope) {
+	$(function () {
+		var $container = $('#container');
+		$container.imagesLoaded(function () {
+			$container.masonry({
+				itemSelector: '.item',
+				isFitWidth: true,
+				isAnimated: !Modernizr.csstransitions
+			});
+		});
+	});
+});
+
+mongoose.controller('MusicDetailController', function ($scope, $routeParams, $sce, musicInfo) {
 	musicInfo.success(function (data) {
 		var info = data[$routeParams.id];
 		$scope.title = info.title;
