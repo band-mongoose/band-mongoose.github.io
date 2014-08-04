@@ -379,3 +379,7 @@ img::-moz-selection {
 	opacity: 0.8;
 	!IMPORTANT;
 }
+
+.spin {
+	height: 50px;
+}

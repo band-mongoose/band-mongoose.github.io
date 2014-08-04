@@ -22,7 +22,8 @@ mongoose
 			}).when('/photos', {
 				templateUrl: 'assets/templates/photo.html'
 			}).when('/videos', {
-				templateUrl: 'assets/templates/video.html'
+				templateUrl: 'assets/templates/video.html',
+				controller: 'VideoController'
 			}).when('/talk', {
 				templateUrl: 'assets/templates/talk.html',
 				controller: 'TalkController'
@@ -35,6 +36,7 @@ mongoose
 			});
 		} ]).run(function ($location) {
 		//jQuery to collapse the navbar on scroll
+
 		$(window).scroll(function () {
 			if ($(".navbar").offset().top > 50) {
 				$(".navbar-fixed-top").addClass("top-nav-collapse");
@@ -89,12 +91,30 @@ mongoose.controller('HomeController', function ($scope, $location, $routeParams,
 });
 
 mongoose.controller('TalkController', function ($scope, $location, $routeParams, $timeout) {
+	$('.spin').append(
+		new Spinner({
+		lines: 12,
+		length: 2,
+		width: 2,
+		radius: 7,
+		color: '#fff'
+	}).spin().el);
 	$timeout(function () {
 		$.ajax({ url: 'http://platform.twitter.com/widgets.js', dataType: 'script', cache: true});
 	}, 500);
 });
 
 mongoose.controller('PhotoController', function ($scope) {
+});
+
+mongoose.controller('VideoController', function ($scope) {
+	$('#container').ytv({
+		user: 'woU_LoYT63nwgRg3z2fS7Q',
+		accent: '#008D54',
+		browsePlaylists: true,
+		controls: true,
+		autoplay: false
+	});
 });
 
 mongoose.controller('MusicController', function ($scope) {
