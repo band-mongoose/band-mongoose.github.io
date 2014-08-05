@@ -1,24 +1,47 @@
-<section class="music-section text-center">
-	<div class="container">
-		<div class="row top-padding text-center">
+<section class="contact-section">
+	<div class="container text-center">
+		<div class="row">
 			<h2>{{title}}</h2>
 		</div>
-		<div class="row">
-			<div class="col-md-8">
-				<div id="links">
-					<a ng-repeat="video in videos" youtube="" poster="" href="images/banana.jpg" title="">
-						<img src="images/thumbnails/banana.jpg" alt="Banana">
+		<div class="row bottom-padding">
+			<div id="links">
+				<div style="display:inline-block;width:{{video.media$group.media$thumbnail.1.width}}px;" ng-repeat="video in videos" class="vignette">
+					<div></div>
+					<a href="{{video.content.src}}" type="text/html" data-poster="{{video.media$group.media$thumbnail.2.url}}" data-youtube="{{video.media$group.yt$videoid.$t}}" title="{{video.title.$t}}">
+						<img ng-src="{{video.media$group.media$thumbnail.1.url}}" alt="{{video.title.$t}}">
+						<h4 class="head-shadow inner-title">{{video.title.$t}}</h4>
 					</a>
 				</div>
 			</div>
 		</div>
 	</div>
+	</div>
 </section>
-<div id="blueimp-gallery-carousel" class="blueimp-gallery blueimp-gallery-carousel">
+<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+	<!-- The container for the modal slides -->
 	<div class="slides"></div>
+	<!-- Controls for the borderless lightbox -->
 	<h3 class="title"></h3>
-	<a class="prev">‹</a>
-	<a class="next">›</a>
-	<a class="play-pause"></a>
+	<a class="prev">‹</a> <a class="next">›</a> <a class="close">×</a> <a class="play-pause"></a>
 	<ol class="indicator"></ol>
+	<!-- The modal dialog, which will be used to wrap the lightbox content -->
+	<div class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" aria-hidden="true">&times;</button>
+					<h4 class="modal-title"></h4>
+				</div>
+				<div class="modal-body next"></div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default pull-left prev">
+						<i class="glyphicon glyphicon-chevron-left"></i> Previous
+					</button>
+					<button type="button" class="btn btn-primary next">
+						Next <i class="glyphicon glyphicon-chevron-right"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

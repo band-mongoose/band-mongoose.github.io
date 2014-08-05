@@ -112,24 +112,24 @@ mongoose.controller('VideoController', function ($scope, $http) {
 });
 
 mongoose.controller('VideoListController', function ($scope, $http, $routeParams) {
-	$scope.init = function(callback) {
+	$scope.init = function() {
+
+
+		$('#links a').on('click', function (event) {
+			event.preventDefault();
+			blueimp.Gallery($('#links a'), $('#blueimp-gallery').data());
+		});
+
+		$('#blueimp-gallery').data('useBootstrapModal', false);
+
+
 		var id = $routeParams.playlistId;
 		$http.get('http://gdata.youtube.com/feeds/api/playlists/' + id + '?v=2&alt=json&format=5').success(function (data) {
-			$scope.title = data.feed.title.$t;
-			$scope.videos = data.feed.entry;
-			callback();
+			console.log(data);
+			$scope.playlists = data.feed.entry;
 		});
 	}
-	$scope.init(function(){
-		$('#links').on('click',function (event) {
-			event = event || window.event;
-			var target = event.target || event.srcElement,
-				link = target.src ? target.parentNode : target,
-				options = {index: $(link).next('a')[0], youTubeClickToPlay: true, useBootstrapModal: false},
-				links = $('a', this);
-			blueimp.Gallery(links, options);
-		});
-	});
+	$scope.init();
 });
 
 mongoose.controller('MusicController', function ($scope) {
