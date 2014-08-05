@@ -1,8 +1,5 @@
 var mongoose = angular.module('mongoose', ['ngRoute', 'twitter.timeline']);
 mongoose
-	.factory('musicInfo', function ($http) {
-		return $http.get('/assets/json/music.json');
-	})
 	.config(
 	['$routeProvider', '$locationProvider',
 		function ($routeProvider, $locationProvider) {
@@ -21,9 +18,12 @@ mongoose
 				controller: 'MusicDetailController'
 			}).when('/photos', {
 				templateUrl: 'assets/templates/photo.html'
-			}).when('/videos', {
+			}).when('/video', {
 				templateUrl: 'assets/templates/video.html',
 				controller: 'VideoController'
+			}).when('/video/:playlistId', {
+				templateUrl: 'assets/templates/video/playlist.html',
+				controller: 'VideoListController'
 			}).when('/talk', {
 				templateUrl: 'assets/templates/talk.html',
 				controller: 'TalkController'
@@ -31,6 +31,8 @@ mongoose
 				templateUrl: 'assets/templates/contact.html'
 			}).when('/former', {
 				templateUrl: 'assets/templates/former.html'
+			}).when('/ticket', {
+				templateUrl: 'assets/templates/ticket.html'
 			}).otherwise({
 				redirectTo: '/home'
 			});
@@ -107,14 +109,18 @@ mongoose.controller('TalkController', function ($scope, $location, $routeParams,
 mongoose.controller('PhotoController', function ($scope) {
 });
 
-mongoose.controller('VideoController', function ($scope) {
-	$('#container').ytv({
-		user: 'woU_LoYT63nwgRg3z2fS7Q',
-		accent: '#008D54',
-		browsePlaylists: true,
-		controls: true,
-		autoplay: false
-	});
+mongoose.controller('VideoController', function ($scope, $http) {
+});
+
+mongoose.controller('VideoListController', function ($scope, $http, $routeParams) {
+	$scope.init = function() {
+		var id = $routeParams.playlistId;
+		$http.get('http://gdata.youtube.com/feeds/api/playlists/' + id + '?v=2&alt=json&format=5').success(function (data) {
+			console.log(data);
+			$scope.playlists = data.feed.entry;
+		});
+	}
+	$scope.init();
 });
 
 mongoose.controller('MusicController', function ($scope) {
@@ -130,8 +136,8 @@ mongoose.controller('MusicController', function ($scope) {
 	});
 });
 
-mongoose.controller('MusicDetailController', function ($scope, $routeParams, $sce, musicInfo) {
-	musicInfo.success(function (data) {
+mongoose.controller('MusicDetailController', function ($scope, $routeParams, $sce, $http) {
+	$http.get('/assets/json/music.json').success(function (data) {
 		var info = data[$routeParams.id];
 		$scope.title = info.title;
 		$scope.description = $sce.trustAsHtml('/assets/templates/music/description/' + $routeParams.id + '.html');
