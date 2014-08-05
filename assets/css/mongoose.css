@@ -400,6 +400,7 @@ img::-moz-selection {
 }
 
 .inner-title {
+	font-family: Nanum Myeongjo, serif;
 	position: absolute;
 	top: 5px;
 	left: 10px;
