@@ -36,8 +36,12 @@ mongoose
 			}).otherwise({
 				redirectTo: '/home'
 			});
-		} ]).run(function ($location) {
+		} ]).run(function ($location, $rootScope) {
 		//jQuery to collapse the navbar on scroll
+
+		$rootScope.$on("$routeChangeSuccess", function(currentRoute, previousRoute){
+			$('body').css('overflow','');
+		});
 
 		$(window).scroll(function () {
 			if ($(".navbar").offset().top > 50) {
@@ -125,7 +129,7 @@ mongoose.controller('VideoListController', function ($scope, $http, $routeParams
 			event = event || window.event;
 			var target = event.target || event.srcElement,
 				link = target.src ? target.parentNode : target,
-				options = {index: $(link).next('a')[0], youTubeClickToPlay: true, useBootstrapModal: false},
+				options = {index: $(link).next('a')[0], event:event, youTubeClickToPlay: true, useBootstrapModal: false},
 				links = $('a', this);
 			blueimp.Gallery(links, options);
 		});
