@@ -88,14 +88,14 @@ mongoose
 	});
 
 mongoose.controller('HomeController', function ($scope, $location, $routeParams, $timeout) {
-	$('.spin').append(new Spinner({
-		lines: 16,
-		length: 4,
-		width: 3,
-		radius: 14,
-		color: '#000'
-	}).spin().el);
 	$('#news-widget').on('lazyshow', function (event) {
+		$('.spin').append(new Spinner({
+			lines: 16,
+			length: 4,
+			width: 4,
+			radius: 14,
+			color: '#000'
+		}).spin().el);
 		$timeout(function () {
 			$.ajax({ url: 'http://platform.twitter.com/widgets.js', dataType: 'script', cache: true}).success(function () {
 				$('.spin').remove();
