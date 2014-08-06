@@ -39,8 +39,8 @@ mongoose
 		} ]).run(function ($location, $rootScope) {
 		//jQuery to collapse the navbar on scroll
 
-		$rootScope.$on("$routeChangeSuccess", function(currentRoute, previousRoute){
-			$('body').css('overflow','');
+		$rootScope.$on("$routeChangeSuccess", function (currentRoute, previousRoute) {
+			$('body').css('overflow', '');
 		});
 
 		$(window).scroll(function () {
@@ -88,9 +88,18 @@ mongoose
 	});
 
 mongoose.controller('HomeController', function ($scope, $location, $routeParams, $timeout) {
+	$('.spin').append(new Spinner({
+		lines: 12,
+		length: 2,
+		width: 2,
+		radius: 7,
+		color: '#000'
+	}).spin().el);
 	$('#news-widget').on('lazyshow', function (event) {
 		$timeout(function () {
-			$.ajax({ url: 'http://platform.twitter.com/widgets.js', dataType: 'script', cache: true});
+			$.ajax({ url: 'http://platform.twitter.com/widgets.js', dataType: 'script', cache: true}).success(function () {
+				$('.spin').remove();
+			});
 		}, 500);
 	}).lazyLoadXT();
 });
@@ -98,12 +107,12 @@ mongoose.controller('HomeController', function ($scope, $location, $routeParams,
 mongoose.controller('TalkController', function ($scope, $location, $routeParams, $timeout) {
 	$('.spin').append(
 		new Spinner({
-		lines: 12,
-		length: 2,
-		width: 2,
-		radius: 7,
-		color: '#fff'
-	}).spin().el);
+			lines: 12,
+			length: 2,
+			width: 2,
+			radius: 7,
+			color: '#fff'
+		}).spin().el);
 	$timeout(function () {
 		$.ajax({ url: 'http://platform.twitter.com/widgets.js', dataType: 'script', cache: true});
 	}, 500);
@@ -116,7 +125,7 @@ mongoose.controller('VideoController', function ($scope, $http) {
 });
 
 mongoose.controller('VideoListController', function ($scope, $http, $routeParams) {
-	$scope.init = function(callback) {
+	$scope.init = function (callback) {
 		var id = $routeParams.playlistId;
 		$http.get('http://gdata.youtube.com/feeds/api/playlists/' + id + '?v=2&alt=json&format=5').success(function (data) {
 			$scope.title = data.feed.title.$t;
@@ -124,12 +133,12 @@ mongoose.controller('VideoListController', function ($scope, $http, $routeParams
 			callback();
 		});
 	}
-	$scope.init(function(){
-		$('#links').on('click',function (event) {
+	$scope.init(function () {
+		$('#links').on('click', function (event) {
 			event = event || window.event;
 			var target = event.target || event.srcElement,
 				link = target.src ? target.parentNode : target,
-				options = {index: $(link).next('a')[0], event:event, youTubeClickToPlay: true, useBootstrapModal: false},
+				options = {index: $(link).next('a')[0], event: event, youTubeClickToPlay: true, useBootstrapModal: false},
 				links = $('a', this);
 			blueimp.Gallery(links, options);
 		});
