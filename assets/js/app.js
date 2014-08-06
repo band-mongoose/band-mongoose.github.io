@@ -89,10 +89,10 @@ mongoose
 
 mongoose.controller('HomeController', function ($scope, $location, $routeParams, $timeout) {
 	$('.spin').append(new Spinner({
-		lines: 12,
-		length: 2,
-		width: 2,
-		radius: 7,
+		lines: 16,
+		length: 4,
+		width: 3,
+		radius: 14,
 		color: '#000'
 	}).spin().el);
 	$('#news-widget').on('lazyshow', function (event) {
