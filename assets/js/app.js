@@ -1,8 +1,9 @@
-var mongoose = angular.module('mongoose', ['ngRoute', 'twitter.timeline']);
+var mongoose = angular.module('mongoose', ['ngRoute', 'twitter.timeline','ngDisqus']);
 mongoose
 	.config(
 	['$routeProvider', '$locationProvider',
 		function ($routeProvider, $locationProvider) {
+			//$disqusProvider.setShortname(band-mongoose);
 			$locationProvider.html5Mode(false).hashPrefix('!');
 			$routeProvider.when('/home', {
 				templateUrl: 'assets/templates/home.html',
@@ -38,7 +39,7 @@ mongoose
 			});
 		} ]).run(function ($location, $rootScope) {
 		//jQuery to collapse the navbar on scroll
-
+		window.disqus_shortname = 'band-mongoose';
 		$rootScope.$on("$routeChangeSuccess", function (currentRoute, previousRoute) {
 			$('body').css('overflow', '');
 		});
@@ -116,6 +117,7 @@ mongoose.controller('TalkController', function ($scope, $location, $routeParams,
 	$timeout(function () {
 		$.ajax({ url: 'http://platform.twitter.com/widgets.js', dataType: 'script', cache: true});
 	}, 500);
+	$scope.id = 'talk';
 });
 
 mongoose.controller('PhotoController', function ($scope) {
@@ -164,5 +166,6 @@ mongoose.controller('MusicDetailController', function ($scope, $routeParams, $sc
 		$scope.title = info.title;
 		$scope.description = $sce.trustAsHtml('/assets/templates/music/description/' + $routeParams.id + '.html');
 		$scope.soundcloud = $sce.trustAsResourceUrl(info.soundcloud);
+		$scope.id = $routeParams.id;
 	});
 });
